@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+    php-apache:
+            build: apache
+            ports :
+               - "80:80"
+            volumes:
+                - ${SYMFONY_APP_PATH}:/var/www/symfony
+            links:
+               - db
+
+    db:
+        user: "1000:50"
+        image: mysql
+        volumes:
+            - "/Users/remyraynaldy/workspace/docker/docker-symfony/.data/db:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
