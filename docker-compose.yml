@@ -21,3 +21,8 @@ services:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
+    phpmyadmin:
+            image: phpmyadmin/phpmyadmin
+            ports:
+                - "8080:80"
+
