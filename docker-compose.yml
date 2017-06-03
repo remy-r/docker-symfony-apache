@@ -13,6 +13,8 @@ services:
     db:
         user: "1000:50"
         image: mysql
+        ports:
+            - "3306:3306"
         volumes:
             - ${MYSQL_PATH}:/var/lib/mysql
         environment:
