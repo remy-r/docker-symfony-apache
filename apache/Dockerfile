@@ -27,6 +27,11 @@ RUN docker-php-ext-install zip
 RUN yes '' | pecl install -f apc
 RUN docker-php-ext-configure hash --with-mhash
 
+ADD php.ini /usr/local/etc/php
+
+ENV TZ=Europe/Paris
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Apache Configuration
 RUN a2enmod rewrite
 RUN a2enmod headers
