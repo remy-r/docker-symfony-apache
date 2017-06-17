@@ -27,8 +27,13 @@ RUN docker-php-ext-install zip
 RUN yes '' | pecl install -f apc
 RUN docker-php-ext-configure hash --with-mhash
 
+# ADD php.ini
 ADD php.ini /usr/local/etc/php
 
+# VHOST
+COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
+
+# Timezone Configuration
 ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -46,10 +51,17 @@ RUN apt-get install --yes --force-yes libmagickwand-dev libmagickcore-dev
 RUN yes '' | pecl install -f imagick
 RUN docker-php-ext-enable imagick
 
+# Tools
+RUN apt-get update && apt-get install --no-install-recommends -y \
+        wget \
+        vim \
+        git \
+		unzip
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+        --install-dir=/usr/local/bin \
+        --filename=composer
+
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
-
-
-
-COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
-#COPY php.ini /usr/local/etc/php
