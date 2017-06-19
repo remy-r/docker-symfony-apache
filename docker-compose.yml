@@ -30,6 +30,8 @@ services:
     phpmyadmin:
             image: phpmyadmin/phpmyadmin
             container_name: phpmyadmin
+            volumes:
+            - ${CONFIG_FILE}:/etc/phpmyadmin/config.user.inc.php
             ports:
                 - "8080:80"
             links:
