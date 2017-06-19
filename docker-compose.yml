@@ -15,6 +15,7 @@ services:
         user: "1000:50"
         image: mysql
         container_name: db
+        command: mysqld --sql_mode=""
         ports:
             - "3306:3306"
         volumes:
