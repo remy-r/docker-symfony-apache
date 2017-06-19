@@ -7,7 +7,7 @@ services:
             ports :
                - "80:80"
             volumes:
-                - ${WORKSPASE_APP_PATH}:/var/www/workspace
+                - ${WORKSPACE_APP_PATH}:/var/www/workspace
             links:
                 - db
 
@@ -20,7 +20,7 @@ services:
             - "3306:3306"
         volumes:
             - ${MYSQL_PATH}:/var/lib/mysql
-            - ${WORKSPASE_APP_PATH}:/var/www/workspace
+            - ${WORKSPACE_APP_PATH}:/var/www/workspace
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
