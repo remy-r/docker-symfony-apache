@@ -27,12 +27,6 @@ RUN docker-php-ext-install zip
 RUN yes '' | pecl install -f apc
 RUN docker-php-ext-configure hash --with-mhash
 
-# ADD php.ini
-ADD php.ini /usr/local/etc/php
-
-# VHOST
-COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
-
 # Timezone Configuration
 ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -65,3 +59,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
+
+# ADD php.ini
+ADD php.ini /usr/local/etc/php
+
+# VHOST
+COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
