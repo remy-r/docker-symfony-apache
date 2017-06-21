@@ -60,8 +60,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
 
+RUN apt-get install --yes --force-yes ssmtp mailutils
+
 # ADD php.ini
 ADD php.ini /usr/local/etc/php
 
 # VHOST
 COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
+COPY ssmtp.conf /etc/ssmtp/ssmtp.conf

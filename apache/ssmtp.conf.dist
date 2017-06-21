@@ -1,0 +1,5 @@
+mailhub=xxxxxx
+UseSTARTTLS=YES
+FromLineOverride=YES
+AuthUser=xxxxxx
+AuthPass=xxxxxx
