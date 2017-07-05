@@ -68,3 +68,5 @@ ADD php.ini /usr/local/etc/php
 # VHOST
 COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
+
+WORKDIR /var/www/workspace
