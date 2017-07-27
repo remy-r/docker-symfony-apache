@@ -28,7 +28,7 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
     phpmyadmin:
-            image: phpmyadmin/phpmyadmin
+            image: phpmyadmin/phpmyadmin:4.7.3-1
             container_name: phpmyadmin
             volumes:
             - ${CONFIG_FILE}:/etc/phpmyadmin/config.user.inc.php
